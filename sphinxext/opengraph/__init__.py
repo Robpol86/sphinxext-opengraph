@@ -109,10 +109,10 @@ def get_tags(
         ):
             image_url = first_image["uri"]
             ogp_image_alt = first_image.get("alt", None)
+            tags += make_tag("og:image:width", "1200")
 
     if image_url:
         tags += make_tag("og:image", "/" + image_url.lstrip("/"))
-        tags += make_tag("og:image:width", "1200")
 
         # Add image alt text (either provided by config or from site_name)
         if isinstance(ogp_image_alt, str):
