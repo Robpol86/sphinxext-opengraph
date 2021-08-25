@@ -109,7 +109,6 @@ def get_tags(
         ):
             image_url = first_image["uri"]
             ogp_image_alt = first_image.get("alt", None)
-            tags += make_tag("og:image:width", "1200")
 
     if image_url:
         tags += make_tag("og:image", "/" + image_url.lstrip("/"))
