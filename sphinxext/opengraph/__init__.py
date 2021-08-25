@@ -108,13 +108,11 @@ def get_tags(
             first_image
             and Path(first_image.get("uri", "")).suffix[1:].lower() in IMAGE_MIME_TYPES
         ):
-            image_url = first_image["uri"]
+            image_url = urljoin(config["ogp_site_url"], first_image["uri"])
             image_width = "1200"
             ogp_image_alt = first_image.get("alt", None)
 
     if image_url:
-        if "://" not in image_url:
-            image_url = "/" + image_url.lstrip("/")
         tags += make_tag("og:image", image_url)
 
         if image_width:
