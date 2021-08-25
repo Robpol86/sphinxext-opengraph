@@ -101,6 +101,7 @@ def get_tags(
     ogp_use_first_image = config["ogp_use_first_image"]
     ogp_image_alt = config["ogp_image_alt"]
 
+    image_width = ""
     if ogp_use_first_image:
         first_image = doctree.next_node(nodes.image)
         if (
@@ -108,10 +109,16 @@ def get_tags(
             and Path(first_image.get("uri", "")).suffix[1:].lower() in IMAGE_MIME_TYPES
         ):
             image_url = first_image["uri"]
+            image_width = "1200"
             ogp_image_alt = first_image.get("alt", None)
 
     if image_url:
-        tags += make_tag("og:image", "/" + image_url.lstrip("/"))
+        if "://" not in image_url:
+            image_url = "/" + image_url.lstrip("/")
+        tags += make_tag("og:image", image_url)
+
+        if image_width:
+            tags += make_tag("og:image:width", image_width)
 
         # Add image alt text (either provided by config or from site_name)
         if isinstance(ogp_image_alt, str):
