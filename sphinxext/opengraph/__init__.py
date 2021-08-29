@@ -3,6 +3,7 @@ from urllib.parse import urljoin, urlparse, urlunparse
 from pathlib import Path, PosixPath
 
 import docutils.nodes as nodes
+from PIL import Image
 from sphinx.application import Sphinx
 from sphinx.util import logger
 
@@ -120,6 +121,13 @@ def get_tags(
             tags += make_tag("og:image:alt", site_name)
         elif ogp_image_alt is None and title:
             tags += make_tag("og:image:alt", title)
+
+        # Add image dimensions if available
+        if os.path.exists(image_url):
+            with Image.open(image_url) as image:
+                image_width, image_height = image.size
+            tags += make_tag("og:image:width", image_width)
+            tags += make_tag("og:image:height", image_height)
 
     # custom tags
     tags += "\n".join(config["ogp_custom_meta_tags"])
