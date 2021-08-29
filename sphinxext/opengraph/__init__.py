@@ -107,7 +107,7 @@ def get_tags(
             first_image
             and Path(first_image.get("uri", "")).suffix[1:].lower() in IMAGE_MIME_TYPES
         ):
-            image_url = urljoin(config["ogp_site_url"], first_image["uri"])
+            image_url = urljoin(config["ogp_site_url"] or "/", first_image["uri"])
             ogp_image_alt = first_image.get("alt", None)
 
     if image_url:
