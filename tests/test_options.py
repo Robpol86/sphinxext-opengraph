@@ -39,8 +39,7 @@ def test_image(og_meta_tags):
 
 @pytest.mark.sphinx("html", testroot="image-rel-paths")
 def test_image_rel_paths(og_meta_tags):
-    pytest.skip("TODO")
-    assert get_tag_content(og_meta_tags, "image") == "http://example.org/_images/image.png"
+    assert get_tag_content(og_meta_tags, "image") == "http://example.org/_images/sample.jpg"
     pytest.skip("TODO: sub pages")
 
 

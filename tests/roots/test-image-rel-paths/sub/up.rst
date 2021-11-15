@@ -1,2 +1,6 @@
-.. image:: ../img/sample.png
+==
+Up
+==
+
+.. image:: ../img/sample.jpg
    :alt: Test image alt text
