@@ -48,7 +48,9 @@ def og_meta_tags(content):
 @pytest.fixture()
 def og_meta_tags_sub(content):
     return [
-        tag for tag in _meta_tags(content, "sub") if tag.get("property", "").startswith("og:")
+        tag
+        for tag in _meta_tags(content, "sub")
+        if tag.get("property", "").startswith("og:")
     ]
 
 
