@@ -37,6 +37,13 @@ def test_image(og_meta_tags):
     assert get_tag_content(og_meta_tags, "image") == "http://example.org/image.png"
 
 
+@pytest.mark.sphinx("html", testroot="image-rel-paths")
+def test_image_rel_paths(og_meta_tags):
+    pytest.skip("TODO")
+    assert get_tag_content(og_meta_tags, "image") == "http://example.org/_images/image.png"
+    pytest.skip("TODO: sub pages")
+
+
 @pytest.mark.sphinx("html", testroot="image")
 def test_image_alt(og_meta_tags):
     assert get_tag_content(og_meta_tags, "image:alt") == "Example's Docs!"
